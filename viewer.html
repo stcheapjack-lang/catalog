@@ -125,12 +125,12 @@
     <div class="viewer-title" id="viewerTitle">ST TRADERS CHEAPJACK Catalog Viewer</div>
     <div class="actions">
       <button onclick="openWhatsApp()">Enquire</button>
-      <a href="index.html">← Back</a>
+      <a href="./index.html">← Back</a>
     </div>
   </div>
 
   <div class="pdf-wrap">
-    <div class="watermark">STCHEAPJACK
+    <div class="watermark">ST TRADERS CHEAPJACK
 8686542986
 FOR CUSTOMER VIEW ONLY</div>
 
@@ -147,7 +147,7 @@ FOR CUSTOMER VIEW ONLY</div>
     document.getElementById("viewerTitle").textContent = title;
 
     if (file) {
-      document.getElementById("pdfFrame").src = file + "#toolbar=0&navpanes=0&scrollbar=1&view=FitH";
+      document.getElementById("pdfFrame").src = "./catalogs/" + file + "#toolbar=0&navpanes=0&scrollbar=1&view=FitH";
     }
 
     function openWhatsApp() {
@@ -155,13 +155,9 @@ FOR CUSTOMER VIEW ONLY</div>
       window.open("https://wa.me/918686542986?text=" + msg, "_blank");
     }
 
-    // Disable right click
     document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Disable drag
     document.addEventListener("dragstart", e => e.preventDefault());
 
-    // Disable common shortcuts
     document.addEventListener("keydown", function(e) {
       const key = e.key.toLowerCase();
 
@@ -179,7 +175,6 @@ FOR CUSTOMER VIEW ONLY</div>
       }
     });
 
-    // Disable text selection
     document.addEventListener("selectstart", e => e.preventDefault());
   </script>
 
