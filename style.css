@@ -180,3 +180,11 @@ footer {
     min-height: auto;
   }
 }
+.logo-box {
+  margin-bottom: 15px;
+}
+
+.logo-box img {
+  width: 120px;
+  max-width: 100%;
+}
