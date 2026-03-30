@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hero {
+  background: linear-gradient(rgba(8, 35, 82, 0.82), rgba(8, 35, 82, 0.82));
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.overlay {
+  width: 100%;
+  max-width: 1000px;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.top-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#searchInput {
+  width: 320px;
+  max-width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+}
+
+.top-whatsapp {
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.intro {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+.intro h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  max-width: 850px;
+  margin: auto;
+  color: #555;
+  line-height: 1.6;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  padding: 30px 22px 60px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  border: 1px solid #e9edf5;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.10);
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 13px 15px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.view {
+  background: #0b3d91;
+}
+
+.view:hover {
+  background: #082d6b;
+}
+
+.floating-wa {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  z-index: 99;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #0b3d91;
+  color: white;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .catalog-grid {
+    padding: 22px 14px 50px;
+    gap: 18px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    min-height: auto;
+  }
+}

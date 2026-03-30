@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog Viewer - STCHEAPJACK</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #111;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .viewer-header {
+      height: 60px;
+      background: #0b3d91;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 16px;
+      font-weight: bold;
+      gap: 12px;
+    }
+
+    .viewer-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viewer-header a,
+    .viewer-header button {
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .viewer-header .actions {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .pdf-wrap {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 60px);
+      background: #222;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .watermark {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      white-space: pre-line;
+      font-size: 44px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.07);
+      transform: rotate(-30deg);
+      z-index: 5;
+      line-height: 1.8;
+    }
+
+    .notice {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      z-index: 6;
+    }
+
+    @media (max-width: 768px) {
+      .viewer-header {
+        padding: 10px 12px;
+        height: auto;
+        flex-wrap: wrap;
+      }
+
+      .pdf-wrap {
+        height: calc(100vh - 92px);
+      }
+
+      .watermark {
+        font-size: 26px;
+      }
+
+      .viewer-header .actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body oncontextmenu="return false">
+
+  <div class="viewer-header">
+    <div class="viewer-title" id="viewerTitle">STCHEAPJACK Catalog Viewer</div>
+    <div class="actions">
+      <button onclick="openWhatsApp()">Enquire</button>
+      <a href="index.html">← Back</a>
+    </div>
+  </div>
+
+  <div class="pdf-wrap">
+    <div class="watermark">STCHEAPJACK
+8686542986
+FOR CUSTOMER VIEW ONLY</div>
+
+    <iframe id="pdfFrame"></iframe>
+
+    <div class="notice">View Only • For Catalogue Reference</div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file");
+    const title = params.get("title") || "Catalog Viewer";
+
+    document.getElementById("viewerTitle").textContent = title;
+
+    if (file) {
+      document.getElementById("pdfFrame").src = file + "#toolbar=0&navpanes=0&scrollbar=1&view=FitH";
+    }
+
+    function openWhatsApp() {
+      const msg = encodeURIComponent("Hi, I want enquiry for: " + title);
+      window.open("https://wa.me/918686542986?text=" + msg, "_blank");
+    }
+
+    // Disable right click
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Disable drag
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // Disable common shortcuts
+    document.addEventListener("keydown", function(e) {
+      const key = e.key.toLowerCase();
+
+      if (
+        (e.ctrlKey && key === "s") ||
+        (e.ctrlKey && key === "p") ||
+        (e.ctrlKey && key === "u") ||
+        (e.ctrlKey && key === "c") ||
+        (e.ctrlKey && e.shiftKey && key === "i") ||
+        (e.ctrlKey && e.shiftKey && key === "j") ||
+        (e.ctrlKey && e.shiftKey && key === "c") ||
+        key === "f12"
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Disable text selection
+    document.addEventListener("selectstart", e => e.preventDefault());
+  </script>
+
+</body>
+</html>
