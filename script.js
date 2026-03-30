@@ -14,10 +14,8 @@ searchInput.addEventListener("input", function () {
   });
 });
 
-// Disable right click on homepage
 document.addEventListener("contextmenu", e => e.preventDefault());
 
-// Disable common shortcuts
 document.addEventListener("keydown", function(e) {
   const key = e.key.toLowerCase();
 
