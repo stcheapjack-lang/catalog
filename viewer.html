@@ -186,6 +186,7 @@
       flex: 1;
       background: #eef2f8;
       position: relative;
+      height: calc(100vh - 120px);
     }
 
     iframe {
@@ -220,6 +221,10 @@
 
       .viewer-content {
         min-height: calc(100vh - 160px);
+      }
+
+      .pdf-wrap {
+        height: calc(100vh - 220px);
       }
     }
 
@@ -258,6 +263,10 @@
       .viewer-content {
         min-height: calc(100vh - 190px);
       }
+
+      .pdf-wrap {
+        height: calc(100vh - 260px);
+      }
     }
   </style>
 </head>
@@ -277,7 +286,10 @@
     </div>
   </header>
 
-    <div class="layout">
+  <!-- MOBILE SIDEBAR BUTTON -->
+  <button class="menu-toggle" id="menuToggle">☰ Catalog List</button>
+
+  <div class="layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
@@ -334,20 +346,19 @@
     catalogTitle.textContent = title;
 
     if (file) {
-  const pdfUrl = window.location.origin + "/catalogs/" + file;
+      const pdfUrl = window.location.origin + "/catalogs/" + file;
 
-  function isMobile() {
-    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
-  }
+      function isMobile() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
+      }
 
-  if (isMobile()) {
-    // Mobile → Google Viewer
-    pdfFrame.src = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(pdfUrl);
-  } else {
-    // Desktop → Normal PDF
-    pdfFrame.src = pdfUrl + "#toolbar=0&navpanes=0&scrollbar=1";
-  }
-}
+      if (isMobile()) {
+        // Mobile → Google Viewer
+        pdfFrame.src = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(pdfUrl);
+      } else {
+        // Desktop → Normal PDF
+        pdfFrame.src = pdfUrl + "#toolbar=0&navpanes=0&scrollbar=1";
+      }
     }
 
     function openWhatsApp() {
@@ -385,6 +396,15 @@
         sidebar.classList.toggle("show");
       });
     }
+
+    // Auto close sidebar on mobile after click
+    sidebarLinks.forEach(link => {
+      link.addEventListener("click", function () {
+        if (window.innerWidth <= 900) {
+          sidebar.classList.remove("show");
+        }
+      });
+    });
   </script>
 
 </body>
