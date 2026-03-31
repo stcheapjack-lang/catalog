@@ -1,16 +1,18 @@
+// ===== ELEMENTS =====
 const searchInput = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
 const sidebarLinks = document.querySelectorAll("#sidebarList a");
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 
-// ===== SEARCH =====
+// ===== SEARCH FUNCTION =====
 if (searchInput) {
   searchInput.addEventListener("input", function () {
     const value = this.value.toLowerCase().trim();
 
+    // Filter cards
     cards.forEach(card => {
-      const name = card.getAttribute("data-name").toLowerCase();
+      const name = (card.getAttribute("data-name") || "").toLowerCase();
       if (name.includes(value)) {
         card.classList.remove("hidden");
       } else {
@@ -18,6 +20,7 @@ if (searchInput) {
       }
     });
 
+    // Filter sidebar
     sidebarLinks.forEach(link => {
       const text = link.textContent.toLowerCase();
       if (text.includes(value)) {
@@ -31,9 +34,14 @@ if (searchInput) {
 
 // ===== ACTIVE SIDEBAR LINK =====
 const currentUrl = window.location.href;
+
 sidebarLinks.forEach(link => {
-  if (currentUrl.includes(link.getAttribute("href"))) {
+  const href = link.getAttribute("href");
+
+  if (href && currentUrl.includes(href)) {
     link.classList.add("active-link");
+  } else {
+    link.classList.remove("active-link");
   }
 });
 
@@ -43,3 +51,12 @@ if (menuToggle && sidebar) {
     sidebar.classList.toggle("show");
   });
 }
+
+// ===== CLOSE SIDEBAR AFTER CLICK (MOBILE FIX) =====
+sidebarLinks.forEach(link => {
+  link.addEventListener("click", function () {
+    if (window.innerWidth <= 900) {
+      sidebar.classList.remove("show");
+    }
+  });
+});
