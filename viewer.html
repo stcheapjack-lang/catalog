@@ -277,10 +277,7 @@
     </div>
   </header>
 
-  <!-- MOBILE SIDEBAR BUTTON -->
-  <button class="menu-toggle" id="menuToggle">☰ Catalog List</button>
-
-  <div class="layout">
+    <div class="layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
@@ -336,8 +333,8 @@
 
     catalogTitle.textContent = title;
 
-    if (file) {
-      pdfFrame.src = "./catalogs/" + file + "#toolbar=0&navpanes=0&scrollbar=1";
+    const pdfUrl = window.location.origin + "/catalogs/" + file;
+pdfFrame.src = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(pdfUrl);
     }
 
     function openWhatsApp() {
