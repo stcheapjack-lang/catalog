@@ -2,266 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catalog Viewer - ST TRADERS CHEAPJACK</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalog Viewer</title>
   <style>
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    body {
       margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
       font-family: Arial, sans-serif;
-      background: #f3f5f9;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+      background: #f4f6fb;
     }
 
-    .viewer-header {
-      height: 62px;
-      background: linear-gradient(90deg, #0b3d91, #062a63);
-      color: #fff;
+    .topbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 14px;
-      gap: 10px;
-      position: relative;
-      z-index: 20;
-    }
-
-    .viewer-left {
-      display: flex;
       align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .viewer-left img {
-      height: 34px;
-      width: auto;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 8px;
-      padding: 4px;
-    }
-
-    .viewer-title {
-      font-size: 17px;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 200px;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .actions a,
-    .actions button {
-      background: rgba(255,255,255,0.14);
+      background: #0b3d91;
       color: #fff;
-      border: none;
+      padding: 10px 20px;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+    }
+
+    .logo-section img {
+      height: 38px;
+      border-radius: 6px;
+    }
+
+    .top-actions a,
+    .top-actions button {
+      margin-left: 10px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
       text-decoration: none;
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s ease;
+      font-size: 14px;
     }
 
-    .actions a:hover,
-    .actions button:hover {
-      background: rgba(255,255,255,0.24);
-    }
-
-    .pdf-wrap {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 62px);
-      background: #e8edf5;
-      overflow: hidden;
+    .titlebar {
+      background: #fff;
+      padding: 12px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
     }
 
     iframe {
       width: 100%;
-      height: 100%;
+      height: calc(100vh - 110px);
       border: none;
       display: block;
       background: #fff;
     }
 
-    .watermark {
-      position: fixed;
-      inset: 62px 0 0 0;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      white-space: pre-line;
-      font-size: 34px;
-      font-weight: 700;
-      color: rgba(20, 30, 50, 0.05);
-      transform: rotate(-30deg);
-      z-index: 8;
-      line-height: 1.8;
-      padding: 20px;
-    }
-
-    .notice {
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.68);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: 12px;
-      z-index: 10;
-      white-space: nowrap;
-    }
-
-    .mobile-note {
-      display: none;
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(11, 61, 145, 0.92);
-      color: #fff;
-      padding: 9px 14px;
-      border-radius: 10px;
-      font-size: 12px;
-      z-index: 12;
-      text-align: center;
-      max-width: 90%;
-      line-height: 1.4;
-    }
-
-    @media (max-width: 768px) {
-      .viewer-header {
-        height: auto;
-        padding: 10px 12px;
-        flex-wrap: wrap;
+    @media(max-width:768px){
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
       }
 
-      .viewer-left {
-        width: 100%;
-      }
-
-      .viewer-title {
-        max-width: 160px;
-        font-size: 15px;
-      }
-
-      .viewer-left img {
-        height: 30px;
-      }
-
-      .actions {
-        width: 100%;
-        justify-content: flex-end;
-      }
-
-      .pdf-wrap {
-        height: calc(100vh - 105px);
-      }
-
-      .watermark {
-        inset: 105px 0 0 0;
-        font-size: 20px;
-      }
-
-      .notice {
-        font-size: 11px;
-        padding: 8px 12px;
-      }
-
-      .mobile-note {
-        display: block;
+      iframe {
+        height: calc(100vh - 145px);
       }
     }
   </style>
 </head>
-<body oncontextmenu="return false">
+<body>
 
-  <div class="viewer-header">
-    <div class="viewer-left">
-      <img src="./images/logo.png" alt="Logo" onerror="this.style.display='none'">
-      <div class="viewer-title" id="viewerTitle">Catalog Viewer</div>
+  <header class="topbar">
+    <div class="logo-section">
+      <img src="./images/st-traders-logo.png" alt="Logo">
+      <span>STCHEAPJACK</span>
     </div>
 
-    <div class="actions">
+    <div class="top-actions">
       <a href="./index.html">🏠 Home</a>
+      <a href="./index.html">⬅ Back</a>
       <button onclick="openWhatsApp()">Enquire</button>
     </div>
-  </div>
+  </header>
 
-  <div class="pdf-wrap">
-    <div class="mobile-note">If catalog takes time, please wait a few seconds.</div>
+  <div class="titlebar" id="catalogTitle">Catalog Viewer</div>
 
-    <div class="watermark">STCHEAPJACK
-8686542986
-FOR CUSTOMER VIEW ONLY</div>
-
-    <iframe id="pdfFrame"></iframe>
-
-    <div class="notice">View Only • For Catalogue Reference</div>
-  </div>
+  <iframe id="pdfFrame"></iframe>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const file = params.get("file");
     const title = params.get("title") || "Catalog Viewer";
 
-    document.getElementById("viewerTitle").textContent = title;
+    document.getElementById("catalogTitle").textContent = title;
 
     if (file) {
-      const pdfUrl = window.location.origin + "/catalogs/" + file;
-      document.getElementById("pdfFrame").src =
-        "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(pdfUrl);
+      document.getElementById("pdfFrame").src = "./catalogs/" + file + "#toolbar=0&navpanes=0&scrollbar=1";
     }
 
     function openWhatsApp() {
       const msg = encodeURIComponent("Hi, I want enquiry for: " + title);
       window.open("https://wa.me/918686542986?text=" + msg, "_blank");
     }
-
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("dragstart", e => e.preventDefault());
-
-    document.addEventListener("keydown", function(e) {
-      const key = e.key.toLowerCase();
-
-      if (
-        (e.ctrlKey && key === "s") ||
-        (e.ctrlKey && key === "p") ||
-        (e.ctrlKey && key === "u") ||
-        (e.ctrlKey && key === "c") ||
-        (e.ctrlKey && e.shiftKey && key === "i") ||
-        (e.ctrlKey && e.shiftKey && key === "j") ||
-        (e.ctrlKey && e.shiftKey && key === "c") ||
-        key === "f12"
-      ) {
-        e.preventDefault();
-      }
-    });
-
-    document.addEventListener("selectstart", e => e.preventDefault());
   </script>
 
 </body>
