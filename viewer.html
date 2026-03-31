@@ -333,8 +333,21 @@
 
     catalogTitle.textContent = title;
 
-    const pdfUrl = window.location.origin + "/catalogs/" + file;
-pdfFrame.src = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(pdfUrl);
+    if (file) {
+  const pdfUrl = window.location.origin + "/catalogs/" + file;
+
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
+  }
+
+  if (isMobile()) {
+    // Mobile → Google Viewer
+    pdfFrame.src = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(pdfUrl);
+  } else {
+    // Desktop → Normal PDF
+    pdfFrame.src = pdfUrl + "#toolbar=0&navpanes=0&scrollbar=1";
+  }
+}
     }
 
     function openWhatsApp() {
