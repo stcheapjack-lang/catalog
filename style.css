@@ -1,190 +1,116 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #222;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  margin: 0;
+  font-family: Arial;
+  background: #f4f6fb;
 }
 
-.hero {
-  background: linear-gradient(rgba(8, 35, 82, 0.82), rgba(8, 35, 82, 0.82));
-  min-height: 280px;
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0b3d91;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.logo-section {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 30px 15px;
+  gap: 10px;
 }
 
-.overlay {
-  width: 100%;
-  max-width: 1000px;
-  color: white;
+.logo-section img {
+  height: 40px;
 }
 
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 18px;
-  margin-bottom: 24px;
-}
-
-.top-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#searchInput {
-  width: 320px;
-  max-width: 100%;
-  padding: 14px 16px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  font-size: 15px;
-}
-
-.top-whatsapp {
-  background: #25D366;
-  color: white;
+.top-actions a {
+  margin-left: 10px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
   text-decoration: none;
-  padding: 14px 18px;
-  border-radius: 10px;
-  font-weight: bold;
+  border-radius: 6px;
 }
 
-.intro {
-  text-align: center;
-  padding: 40px 20px 20px;
+/* LAYOUT */
+.layout {
+  display: flex;
+  height: calc(100vh - 60px);
 }
 
-.intro h2 {
-  font-size: 32px;
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #fff;
+  padding: 15px;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
   margin-bottom: 10px;
 }
 
-.intro p {
-  max-width: 850px;
-  margin: auto;
-  color: #555;
-  line-height: 1.6;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 
+.sidebar li {
+  margin-bottom: 8px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* CONTENT */
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* GRID */
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  padding: 30px 22px 60px;
-  max-width: 1400px;
-  margin: auto;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 15px;
 }
 
 .card {
   background: #fff;
-  border-radius: 16px;
-  padding: 24px 20px;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 15px;
+  border-radius: 10px;
   text-align: center;
-  border: 1px solid #e9edf5;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 34px rgba(0,0,0,0.10);
-}
-
-.card h3 {
-  font-size: 20px;
-  margin-bottom: 18px;
-  min-height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn {
   display: inline-block;
-  width: 100%;
-  text-align: center;
-  padding: 13px 15px;
-  text-decoration: none;
-  color: white;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.view {
-  background: #0b3d91;
-}
-
-.view:hover {
-  background: #082d6b;
-}
-
-.floating-wa {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: #25D366;
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 18px;
-  border-radius: 50px;
-  font-weight: bold;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-  z-index: 99;
-}
-
-footer {
-  text-align: center;
-  padding: 22px;
-  background: #0b3d91;
-  color: white;
   margin-top: 10px;
+  background: #0b3d91;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
 }
 
-.hidden {
-  display: none !important;
-}
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 32px;
+/* MOBILE */
+@media(max-width:768px){
+  .layout {
+    flex-direction: column;
   }
 
-  .hero p {
-    font-size: 16px;
+  .sidebar {
+    width: 100%;
+    height: auto;
   }
-
-  .catalog-grid {
-    padding: 22px 14px 50px;
-    gap: 18px;
-  }
-
-  .card h3 {
-    font-size: 18px;
-    min-height: auto;
-  }
-}
-.logo-box {
-  margin-bottom: 15px;
-}
-
-.logo-box img {
-  width: 120px;
-  max-width: 100%;
 }
