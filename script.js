@@ -1,34 +1,40 @@
 // ===== ELEMENTS =====
 const searchInput = document.getElementById("searchInput");
+const sidebarSearch = document.getElementById("sidebarSearch");
 const cards = document.querySelectorAll(".card");
 const sidebarLinks = document.querySelectorAll("#sidebarList a");
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 
-// ===== SEARCH FUNCTION =====
+// ===== FILTER FUNCTION =====
+function filterCatalogs(value) {
+  const keyword = value.toLowerCase().trim();
+
+  // Cards
+  cards.forEach(card => {
+    const name = (card.dataset.name || "").toLowerCase();
+    card.classList.toggle("hidden", !name.includes(keyword));
+  });
+
+  // Sidebar Links
+  sidebarLinks.forEach(link => {
+    const text = link.textContent.toLowerCase();
+    link.parentElement.classList.toggle("hidden", !text.includes(keyword));
+  });
+}
+
+// ===== SEARCH EVENTS =====
 if (searchInput) {
   searchInput.addEventListener("input", function () {
-    const value = this.value.toLowerCase().trim();
+    filterCatalogs(this.value);
+    if (sidebarSearch) sidebarSearch.value = this.value;
+  });
+}
 
-    // Filter cards
-    cards.forEach(card => {
-      const name = (card.getAttribute("data-name") || "").toLowerCase();
-      if (name.includes(value)) {
-        card.classList.remove("hidden");
-      } else {
-        card.classList.add("hidden");
-      }
-    });
-
-    // Filter sidebar
-    sidebarLinks.forEach(link => {
-      const text = link.textContent.toLowerCase();
-      if (text.includes(value)) {
-        link.parentElement.classList.remove("hidden");
-      } else {
-        link.parentElement.classList.add("hidden");
-      }
-    });
+if (sidebarSearch) {
+  sidebarSearch.addEventListener("input", function () {
+    filterCatalogs(this.value);
+    if (searchInput) searchInput.value = this.value;
   });
 }
 
@@ -37,11 +43,8 @@ const currentUrl = window.location.href;
 
 sidebarLinks.forEach(link => {
   const href = link.getAttribute("href");
-
   if (href && currentUrl.includes(href)) {
     link.classList.add("active-link");
-  } else {
-    link.classList.remove("active-link");
   }
 });
 
@@ -52,11 +55,51 @@ if (menuToggle && sidebar) {
   });
 }
 
-// ===== CLOSE SIDEBAR AFTER CLICK (MOBILE FIX) =====
+// Auto close sidebar on mobile after click
 sidebarLinks.forEach(link => {
   link.addEventListener("click", function () {
-    if (window.innerWidth <= 900) {
+    if (window.innerWidth <= 900 && sidebar) {
       sidebar.classList.remove("show");
     }
   });
 });
+
+// ===== SHARE WEBSITE =====
+function shareWebsite() {
+  const shareData = {
+    title: "ST TRADERS CHEAPJACK Catalogs",
+    text: "Browse our product catalogs online.",
+    url: "https://catalog.stcheapjack.com/"
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(shareData.url).then(() => {
+      alert("Website link copied:\n" + shareData.url);
+    });
+  }
+}
+
+// ===== SHARE INDIVIDUAL CATALOG =====
+function shareCatalog(file, title) {
+  const url =
+    "https://catalog.stcheapjack.com/viewer.html?file=" +
+    encodeURIComponent(file) +
+    "&title=" +
+    encodeURIComponent(title);
+
+  const shareData = {
+    title: title,
+    text: "Check this catalog: " + title,
+    url: url
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      alert("Catalog link copied:\n" + url);
+    });
+  }
+}
