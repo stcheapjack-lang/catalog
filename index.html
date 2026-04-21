@@ -8,212 +8,296 @@
 </head>
 <body>
 
-  <!-- TOPBAR -->
-  <header class="topbar">
+<header class="topbar">
   <div class="logo-section">
-    <img src="./images/st-traders-logo1.png" alt="STCHEAPJACK Logo" onerror="this.style.display='none'">
-    <span>ST TRADERS CHEAPJACK 1-5-24, Kubera Complex, Sri Krishna Colony, Musheerabad, Hyderabad - 500020</span>
+    <img src="./images/st-traders-logo1.png" alt="Logo" onerror="this.style.display='none'">
+    <span>ST TRADERS CHEAPJACK</span>
   </div>
 
-    <div class="top-actions">
-      <a href="./index.html" class="home-btn">🏠 Home</a>
-      <a href="https://wa.me/918686542986?text=Hi%20I%20want%20your%20catalogs" target="_blank" class="whatsapp-btn">WhatsApp</a>
+  <div class="top-actions">
+    <a href="./index.html">🏠 Home</a>
+    <button onclick="shareWebsite()">🔗 Share</button>
+    <a href="tel:+919347012962">📞 Call</a>
+    <a href="https://wa.me/919347012962?text=Hi%20I%20want%20your%20catalogs" target="_blank">WhatsApp</a>
+  </div>
+</header>
+
+<button class="menu-toggle" id="menuToggle">☰ Catalog List</button>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Catalog List</h3>
+      <input type="text" id="sidebarSearch" placeholder="Search catalog...">
     </div>
-  </header>
 
-  <!-- MOBILE SIDEBAR TOGGLE -->
-  <button class="menu-toggle" id="menuToggle">☰ Catalogs</button>
+    <ul id="sidebarList">
+      <li><a href="./viewer.html?file=aprons.pdf&title=Aprons">Aprons</a></li>
+      <li><a href="./viewer.html?file=attender-gown.pdf&title=Attender Gown">Attender Gown</a></li>
+      <li><a href="./viewer.html?file=bedsheets-catalog.pdf&title=Bedsheets Catalog">Bedsheets Catalog</a></li>
+      <li><a href="./viewer.html?file=belt-and-overlapping-gowns.pdf&title=Belt and Overlapping Gowns">Belt & Overlapping Gowns</a></li>
+      <li><a href="./viewer.html?file=blankets-catalog.pdf&title=Blankets Catalog">Blankets Catalog</a></li>
+      <li><a href="./viewer.html?file=business-class-wocky-tocky.pdf&title=Business Class Wocky Tocky">Business Class Wocky Tocky</a></li>
+      <li><a href="./viewer.html?file=chef-coat-and-ward-boy.pdf&title=Chef Coat and Ward Boy">Chef Coat & Ward Boy</a></li>
+      <li><a href="./viewer.html?file=front-office-uniform.pdf&title=Front Office Uniform">Front Office Uniform</a></li>
+      <li><a href="./viewer.html?file=hole-towels-catalog.pdf&title=Hole Towels Catalog">Hole Towels Catalog</a></li>
+      <li><a href="./viewer.html?file=house-keeping-jacket.pdf&title=House Keeping Jacket">House Keeping Jacket</a></li>
+      <li><a href="./viewer.html?file=housekeeping-r.pdf&title=Housekeeping R">Housekeeping R</a></li>
+      <li><a href="./viewer.html?file=nighty-gowns.pdf&title=Nighty Gowns">Nighty Gowns</a></li>
+      <li><a href="./viewer.html?file=patient-dress.pdf&title=Patient Dress">Patient Dress</a></li>
+      <li><a href="./viewer.html?file=patient-gowns-r.pdf&title=Patient Gowns R">Patient Gowns R</a></li>
+      <li><a href="./viewer.html?file=pediatric-gowns-and-dress.pdf&title=Pediatric Gowns and Dress">Pediatric Gowns & Dress</a></li>
+      <li><a href="./viewer.html?file=plain-towels-catalog.pdf&title=Plain Towels Catalog">Plain Towels Catalog</a></li>
+      <li><a href="./viewer.html?file=scrub-suit-female-victoria-supreme.pdf&title=Scrub Suit Female Victoria Supreme">Scrub Suit Female</a></li>
+      <li><a href="./viewer.html?file=scrub-suit-male-victoria-supreme.pdf&title=Scrub Suit Male Victoria Supreme">Scrub Suit Male</a></li>
+      <li><a href="./viewer.html?file=nurse-uniform.pdf&title=Nurse Uniform">Nurse Uniform</a></li>
+      <li><a href="./viewer.html?file=nurses-uniform-color-shades.pdf&title=Nurse Uniform Color Shades">Nurse Uniform Color Shades</a></li>
+      <li><a href="./viewer.html?file=scrub-suit-color-shades-vs.pdf&title=Scrub Suit Color Shades">Scrub Suit Color Shades</a></li>
+    </ul>
+  </aside>
 
-  <!-- MAIN LAYOUT -->
-  <div class="layout">
+  <!-- Main Content -->
+  <main class="content">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <h3>Catalog List</h3>
+    <section class="hero-box">
+      <h1>Medical & Hospital Wear Catalogs</h1>
+      <p>
+        Browse our professional range of uniforms, scrub suits, patient gowns,
+        aprons, towels, bedsheets, blankets and healthcare wear.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="tel:+919347012962" class="btn primary">📞 Call Now</a>
+        <a href="https://wa.me/919347012962?text=Hi%20I%20want%20your%20catalogs" target="_blank" class="btn whatsapp">💬 WhatsApp</a>
+      </div>
+    </section>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search catalog...">
+    </div>
+
+    <div class="catalog-grid" id="catalogGrid">
+
+      <!-- Repeat Cards -->
+      <div class="card" data-name="Aprons">
+        <h3>Aprons</h3>
+        <p>View apron styles and details.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=aprons.pdf&title=Aprons" class="btn">View</a>
+          <button onclick="shareCatalog('aprons.pdf','Aprons')" class="share-btn">Share</button>
+        </div>
       </div>
 
-      <ul id="sidebarList">
-        <li><a href="./viewer.html?file=aprons.pdf&title=Aprons">Aprons</a></li>
-        <li><a href="./viewer.html?file=attender-gown.pdf&title=Attender Gown">Attender Gown</a></li>
-        <li><a href="./viewer.html?file=bedsheets-catalog.pdf&title=Bedsheets Catalog">Bedsheets Catalog</a></li>
-        <li><a href="./viewer.html?file=belt-and-overlapping-gowns.pdf&title=Belt and Overlapping Gowns">Belt & Overlapping Gowns</a></li>
-        <li><a href="./viewer.html?file=blankets-catalog.pdf&title=Blankets Catalog">Blankets Catalog</a></li>
-        <li><a href="./viewer.html?file=business-class-wocky-tocky.pdf&title=Business Class Wocky Tocky">Business Class Wocky Tocky</a></li>
-        <li><a href="./viewer.html?file=chef-coat-and-ward-boy.pdf&title=Chef Coat and Ward Boy">Chef Coat & Ward Boy</a></li>
-        <li><a href="./viewer.html?file=front-office-uniform.pdf&title=Front Office Uniform">Front Office Uniform</a></li>
-        <li><a href="./viewer.html?file=hole-towels-catalog.pdf&title=Hole Towels Catalog">Hole Towels Catalog</a></li>
-        <li><a href="./viewer.html?file=house-keeping-jacket.pdf&title=House Keeping Jacket">House Keeping Jacket</a></li>
-        <li><a href="./viewer.html?file=housekeeping-r.pdf&title=Housekeeping R">Housekeeping R</a></li>
-        <li><a href="./viewer.html?file=nighty-gowns.pdf&title=Nighty Gowns">Nighty Gowns</a></li>
-        <li><a href="./viewer.html?file=patient-dress.pdf&title=Patient Dress">Patient Dress</a></li>
-        <li><a href="./viewer.html?file=patient-gowns-r.pdf&title=Patient Gowns R">Patient Gowns R</a></li>
-        <li><a href="./viewer.html?file=pediatric-gowns-and-dress.pdf&title=Pediatric Gowns and Dress">Pediatric Gowns & Dress</a></li>
-        <li><a href="./viewer.html?file=plain-towels-catalog.pdf&title=Plain Towels Catalog">Plain Towels Catalog</a></li>
-        <li><a href="./viewer.html?file=scrub-suit-female-victoria-supreme.pdf&title=Scrub Suit Female Victoria Supreme">Scrub Suit Female</a></li>
-        <li><a href="./viewer.html?file=scrub-suit-male-victoria-supreme.pdf&title=Scrub Suit Male Victoria Supreme">Scrub Suit Male</a></li>
-        <li><a href="./viewer.html?file=nurse-uniform.pdf&title=Nurse Uniform">Nurse Uniform</a></li>
-        <li><a href="./viewer.html?file=nurses-uniform-color-shades.pdf&title=Nurse Uniform Color Shades">Nurse Uniform Color Shades</a></li>
-        <li><a href="./viewer.html?file=scrub-suit-color-shades-vs.pdf&title=Scrub Suit Color Shades">Scrub Suit Color Shades</a></li>
-      </ul>
-    </aside>
-
-    <!-- CONTENT -->
-    <main class="content">
-      <div class="page-heading">
-        <h1>Product Catalogs</h1>
-        <p>Browse hospital wear, scrub suits, gowns, aprons, towels, uniforms and more.</p>
+      <div class="card" data-name="Attender Gown">
+        <h3>Attender Gown</h3>
+        <p>Browse gown styles and sizes.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=attender-gown.pdf&title=Attender Gown" class="btn">View</a>
+          <button onclick="shareCatalog('attender-gown.pdf','Attender Gown')" class="share-btn">Share</button>
+        </div>
       </div>
 
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search catalog..." />
+      <div class="card" data-name="Bedsheets Catalog">
+        <h3>Bedsheets</h3>
+        <p>Hospital bedsheet collection.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=bedsheets-catalog.pdf&title=Bedsheets Catalog" class="btn">View</a>
+          <button onclick="shareCatalog('bedsheets-catalog.pdf','Bedsheets Catalog')" class="share-btn">Share</button>
+        </div>
       </div>
 
-      <div class="catalog-grid" id="catalogGrid">
-
-        <div class="card" data-name="Aprons">
-          <h3>Aprons</h3>
-          <p>View apron styles and catalog details.</p>
-          <a href="./viewer.html?file=aprons.pdf&title=Aprons" class="btn">View Catalog</a>
+      <div class="card" data-name="Belt and Overlapping Gowns">
+        <h3>Overlapping Gowns</h3>
+        <p>Explore gown options.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=belt-and-overlapping-gowns.pdf&title=Belt and Overlapping Gowns" class="btn">View</a>
+          <button onclick="shareCatalog('belt-and-overlapping-gowns.pdf','Belt and Overlapping Gowns')" class="share-btn">Share</button>
         </div>
-
-        <div class="card" data-name="Attender Gown">
-          <h3>Attender Gown</h3>
-          <p>Browse attender gown designs and sizes.</p>
-          <a href="./viewer.html?file=attender-gown.pdf&title=Attender Gown" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Bedsheets Catalog">
-          <h3>Bedsheets Catalog</h3>
-          <p>Hospital bedsheet varieties and details.</p>
-          <a href="./viewer.html?file=bedsheets-catalog.pdf&title=Bedsheets Catalog" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Belt and Overlapping Gowns">
-          <h3>Belt & Overlapping Gowns</h3>
-          <p>Explore gown options for hospital use.</p>
-          <a href="./viewer.html?file=belt-and-overlapping-gowns.pdf&title=Belt and Overlapping Gowns" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Blankets Catalog">
-          <h3>Blankets Catalog</h3>
-          <p>Browse hospital blanket options.</p>
-          <a href="./viewer.html?file=blankets-catalog.pdf&title=Blankets Catalog" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Business Class Wocky Tocky">
-          <h3>Business Class Wocky Tocky</h3>
-          <p>Uniform and related product details.</p>
-          <a href="./viewer.html?file=business-class-wocky-tocky.pdf&title=Business Class Wocky Tocky" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Chef Coat and Ward Boy">
-          <h3>Chef Coat & Ward Boy</h3>
-          <p>Chef and ward boy uniform collection.</p>
-          <a href="./viewer.html?file=chef-coat-and-ward-boy.pdf&title=Chef Coat and Ward Boy" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Front Office Uniform">
-          <h3>Front Office Uniform</h3>
-          <p>Professional front office uniform styles.</p>
-          <a href="./viewer.html?file=front-office-uniform.pdf&title=Front Office Uniform" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Hole Towels Catalog">
-          <h3>Hole Towels Catalog</h3>
-          <p>Medical towels and linen catalog.</p>
-          <a href="./viewer.html?file=hole-towels-catalog.pdf&title=Hole Towels Catalog" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="House Keeping Jacket">
-          <h3>House Keeping Jacket</h3>
-          <p>Housekeeping jackets and wear options.</p>
-          <a href="./viewer.html?file=house-keeping-jacket.pdf&title=House Keeping Jacket" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Housekeeping R">
-          <h3>Housekeeping R</h3>
-          <p>Additional housekeeping wear collection.</p>
-          <a href="./viewer.html?file=housekeeping-r.pdf&title=Housekeeping R" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Nighty Gowns">
-          <h3>Nighty Gowns</h3>
-          <p>Comfort wear and patient night gown range.</p>
-          <a href="./viewer.html?file=nighty-gowns.pdf&title=Nighty Gowns" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Patient Dress">
-          <h3>Patient Dress</h3>
-          <p>Patient dress catalog and style options.</p>
-          <a href="./viewer.html?file=patient-dress.pdf&title=Patient Dress" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Patient Gowns R">
-          <h3>Patient Gowns R</h3>
-          <p>Patient gown range for hospital use.</p>
-          <a href="./viewer.html?file=patient-gowns-r.pdf&title=Patient Gowns R" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Pediatric Gowns and Dress">
-          <h3>Pediatric Gowns & Dress</h3>
-          <p>Pediatric wear and gown collection.</p>
-          <a href="./viewer.html?file=pediatric-gowns-and-dress.pdf&title=Pediatric Gowns and Dress" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Plain Towels Catalog">
-          <h3>Plain Towels Catalog</h3>
-          <p>Plain towel varieties and details.</p>
-          <a href="./viewer.html?file=plain-towels-catalog.pdf&title=Plain Towels Catalog" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Scrub Suit Female Victoria Supreme">
-          <h3>Scrub Suit Female</h3>
-          <p>Female scrub suit collection.</p>
-          <a href="./viewer.html?file=scrub-suit-female-victoria-supreme.pdf&title=Scrub Suit Female Victoria Supreme" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Scrub Suit Male Victoria Supreme">
-          <h3>Scrub Suit Male</h3>
-          <p>Male scrub suit collection.</p>
-          <a href="./viewer.html?file=scrub-suit-male-victoria-supreme.pdf&title=Scrub Suit Male Victoria Supreme" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Nurse Uniform">
-          <h3>Nurses Uniform</h3>
-          <p>Nurses uniform collection.</p>
-          <a href="./viewer.html?file=nurse-uniform.pdf&title=Nurses Uniform" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Nurses Uniform Color Shades">
-          <h3>Nurses Uniform Color Shades</h3>
-          <p>Nurses Uniform Color Shades.</p>
-          <a href="./viewer.html?file=nurses-uniform-color-shades.pdf&title=Nurse Uniform Color Shades" class="btn">View Catalog</a>
-        </div>
-
-        <div class="card" data-name="Scrub Suit Color Shades">
-          <h3>Scrub Suit Color Shades</h3>
-          <p>Scrub Suit Color Shades.</p>
-          <a href="./viewer.html?file=scrub-suit-color-shades-vs.pdf&title=Scrub Suit Color Shades" class="btn">View Catalog</a>
-        </div>
-        
       </div>
 
-      <!-- CONTACT SECTION -->
-      <section class="contact-section">
-        <h2>Contact Us</h2>
-        <p><strong>📍 Address:</strong> 1-5-24, Kubera Complex, Sri Krishna Colony, Musheerabad, Hyderabad - 500020</p>
-        <p><strong>📧 Email:</strong> <a href="mailto:sttraderscheapjack@gmail.com">sttraderscheapjack@gmail.com</a></p>
-        <p><strong>📞 Phone:</strong> <a href="tel:+918686542986">8686542986</a></p>
-      </section>
+      <div class="card" data-name="Blankets Catalog">
+        <h3>Blankets</h3>
+        <p>Hospital blanket options.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=blankets-catalog.pdf&title=Blankets Catalog" class="btn">View</a>
+          <button onclick="shareCatalog('blankets-catalog.pdf','Blankets Catalog')" class="share-btn">Share</button>
+        </div>
+      </div>
 
-      <!-- FOOTER -->
-      <footer class="footer">
-        <p>© 2026 ST TRADERS CHEAPJACK. All Rights Reserved.</p>
-      </footer>
-    </main>
-  </div>
+      <div class="card" data-name="Business Class Wocky Tocky">
+        <h3>Wocky Tocky</h3>
+        <p>Business class products.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=business-class-wocky-tocky.pdf&title=Business Class Wocky Tocky" class="btn">View</a>
+          <button onclick="shareCatalog('business-class-wocky-tocky.pdf','Business Class Wocky Tocky')" class="share-btn">Share</button>
+        </div>
+      </div>
 
-  <script src="./script.js"></script>
+      <div class="card" data-name="Chef Coat and Ward Boy">
+        <h3>Chef Coat</h3>
+        <p>Chef & ward boy uniforms.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=chef-coat-and-ward-boy.pdf&title=Chef Coat and Ward Boy" class="btn">View</a>
+          <button onclick="shareCatalog('chef-coat-and-ward-boy.pdf','Chef Coat and Ward Boy')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Front Office Uniform">
+        <h3>Front Office</h3>
+        <p>Professional uniform styles.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=front-office-uniform.pdf&title=Front Office Uniform" class="btn">View</a>
+          <button onclick="shareCatalog('front-office-uniform.pdf','Front Office Uniform')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Hole Towels Catalog">
+        <h3>Hole Towels</h3>
+        <p>Medical towels catalog.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=hole-towels-catalog.pdf&title=Hole Towels Catalog" class="btn">View</a>
+          <button onclick="shareCatalog('hole-towels-catalog.pdf','Hole Towels Catalog')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="House Keeping Jacket">
+        <h3>House Keeping</h3>
+        <p>Jackets & uniforms.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=house-keeping-jacket.pdf&title=House Keeping Jacket" class="btn">View</a>
+          <button onclick="shareCatalog('house-keeping-jacket.pdf','House Keeping Jacket')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Housekeeping R">
+        <h3>Housekeeping R</h3>
+        <p>Additional wear range.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=housekeeping-r.pdf&title=Housekeeping R" class="btn">View</a>
+          <button onclick="shareCatalog('housekeeping-r.pdf','Housekeeping R')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Nighty Gowns">
+        <h3>Nighty Gowns</h3>
+        <p>Comfort wear range.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=nighty-gowns.pdf&title=Nighty Gowns" class="btn">View</a>
+          <button onclick="shareCatalog('nighty-gowns.pdf','Nighty Gowns')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Patient Dress">
+        <h3>Patient Dress</h3>
+        <p>Patient dress collection.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=patient-dress.pdf&title=Patient Dress" class="btn">View</a>
+          <button onclick="shareCatalog('patient-dress.pdf','Patient Dress')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Patient Gowns R">
+        <h3>Patient Gowns</h3>
+        <p>Hospital patient gowns.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=patient-gowns-r.pdf&title=Patient Gowns R" class="btn">View</a>
+          <button onclick="shareCatalog('patient-gowns-r.pdf','Patient Gowns R')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Pediatric Gowns and Dress">
+        <h3>Pediatric</h3>
+        <p>Pediatric gowns & dress.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=pediatric-gowns-and-dress.pdf&title=Pediatric Gowns and Dress" class="btn">View</a>
+          <button onclick="shareCatalog('pediatric-gowns-and-dress.pdf','Pediatric Gowns and Dress')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Plain Towels Catalog">
+        <h3>Plain Towels</h3>
+        <p>Plain towel varieties.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=plain-towels-catalog.pdf&title=Plain Towels Catalog" class="btn">View</a>
+          <button onclick="shareCatalog('plain-towels-catalog.pdf','Plain Towels Catalog')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Scrub Suit Female">
+        <h3>Scrub Female</h3>
+        <p>Female scrub suit collection.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=scrub-suit-female-victoria-supreme.pdf&title=Scrub Suit Female Victoria Supreme" class="btn">View</a>
+          <button onclick="shareCatalog('scrub-suit-female-victoria-supreme.pdf','Scrub Suit Female')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Scrub Suit Male">
+        <h3>Scrub Male</h3>
+        <p>Male scrub suit collection.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=scrub-suit-male-victoria-supreme.pdf&title=Scrub Suit Male Victoria Supreme" class="btn">View</a>
+          <button onclick="shareCatalog('scrub-suit-male-victoria-supreme.pdf','Scrub Suit Male')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Nurse Uniform">
+        <h3>Nurse Uniform</h3>
+        <p>Nurse wear collection.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=nurse-uniform.pdf&title=Nurse Uniform" class="btn">View</a>
+          <button onclick="shareCatalog('nurse-uniform.pdf','Nurse Uniform')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Nurse Uniform Color Shades">
+        <h3>Nurse Shades</h3>
+        <p>Color shade options.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=nurses-uniform-color-shades.pdf&title=Nurse Uniform Color Shades" class="btn">View</a>
+          <button onclick="shareCatalog('nurses-uniform-color-shades.pdf','Nurse Uniform Color Shades')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Scrub Suit Color Shades">
+        <h3>Scrub Shades</h3>
+        <p>Scrub color options.</p>
+        <div class="card-actions">
+          <a href="./viewer.html?file=scrub-suit-color-shades-vs.pdf&title=Scrub Suit Color Shades" class="btn">View</a>
+          <button onclick="shareCatalog('scrub-suit-color-shades-vs.pdf','Scrub Suit Color Shades')" class="share-btn">Share</button>
+        </div>
+      </div>
+
+    </div>
+
+    <section class="contact-grid">
+      <div class="contact-card">
+        <h3>📍 Address</h3>
+        <p>1-5-24, Kubera Complex, Sri Krishna Colony, Musheerabad, Hyderabad - 500020</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>📞 Phone</h3>
+        <p><a href="tel:+919347012962">9347012962</a></p>
+      </div>
+
+      <div class="contact-card">
+        <h3>📧 Email</h3>
+        <p><a href="mailto:sttraderscheapjack@gmail.com">sttraderscheapjack@gmail.com</a></p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<a href="https://wa.me/919347012962?text=Hi%20I%20want%20your%20catalogs" target="_blank" class="floating-wa">WhatsApp</a>
+
+<footer class="footer">
+  <p>© 2026 ST TRADERS CHEAPJACK | All Rights Reserved</p>
+</footer>
+
+<script src="./script.js"></script>
 </body>
 </html>
