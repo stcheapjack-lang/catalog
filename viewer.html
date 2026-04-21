@@ -2,49 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Catalog Viewer</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+  height:100%;
+  font-family:Arial,sans-serif;
+  background:#f4f6fb;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f5f7fb;
-  height:100vh;
   display:flex;
   flex-direction:column;
 }
 
-/* HEADER */
+/* TOPBAR */
 .topbar{
-  background:#0b3d91;
+  background:linear-gradient(90deg,#0b3d91,#082d6b);
   color:#fff;
   padding:12px 18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   gap:10px;
   flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo-section{
   display:flex;
   align-items:center;
   gap:10px;
-  font-weight:bold;
   font-size:20px;
+  font-weight:700;
 }
 
 .logo-section img{
   height:40px;
   background:#fff;
   padding:4px;
-  border-radius:8px;
+  border-radius:10px;
 }
 
 .top-actions{
@@ -55,24 +57,26 @@ body{
 
 .top-actions a,
 .top-actions button{
+  border:none;
+  text-decoration:none;
   background:rgba(255,255,255,.15);
   color:#fff;
-  border:none;
   padding:10px 14px;
   border-radius:10px;
-  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
   cursor:pointer;
-  font-weight:600;
 }
 
-/* MOBILE MENU */
+/* MENU */
 .menu-toggle{
   display:none;
+  width:100%;
   border:none;
   background:#fff;
-  padding:14px;
-  font-weight:bold;
   color:#0b3d91;
+  padding:14px;
+  font-weight:700;
   cursor:pointer;
   border-bottom:1px solid #ddd;
 }
@@ -89,18 +93,19 @@ body{
   width:290px;
   background:#fff;
   border-right:1px solid #ddd;
+  padding:16px;
   overflow-y:auto;
-  padding:15px;
+  flex-shrink:0;
 }
 
 .sidebar h3{
   color:#0b3d91;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .sidebar input{
   width:100%;
-  padding:10px;
+  padding:11px 12px;
   border:1px solid #ccc;
   border-radius:10px;
   margin-bottom:12px;
@@ -116,10 +121,10 @@ body{
 
 .sidebar a{
   display:block;
-  padding:10px;
-  border-radius:10px;
+  padding:10px 12px;
   text-decoration:none;
   color:#333;
+  border-radius:10px;
 }
 
 .sidebar a:hover{
@@ -131,19 +136,20 @@ body{
   color:#fff;
 }
 
-/* MAIN */
+/* VIEWER */
 .viewer-content{
   flex:1;
   display:flex;
   flex-direction:column;
   min-width:0;
+  min-height:0;
 }
 
 .titlebar{
   background:#fff;
   padding:14px 18px;
   font-size:20px;
-  font-weight:bold;
+  font-weight:700;
   color:#0b3d91;
   border-bottom:1px solid #ddd;
 }
@@ -151,11 +157,10 @@ body{
 .pdf-wrap{
   flex:1;
   overflow-y:auto;
-  padding:15px;
-  position:relative;
+  padding:14px;
+  -webkit-overflow-scrolling:touch;
 }
 
-/* PAGE NUMBER */
 .page-indicator{
   position:sticky;
   top:10px;
@@ -164,10 +169,10 @@ body{
   background:#0b3d91;
   color:#fff;
   padding:8px 14px;
-  border-radius:30px;
+  border-radius:999px;
   font-size:14px;
-  font-weight:bold;
-  z-index:20;
+  font-weight:700;
+  z-index:10;
   margin-bottom:10px;
 }
 
@@ -192,14 +197,16 @@ body{
   text-align:center;
   padding:20px;
   color:#555;
-  font-weight:600;
+  font-weight:700;
+}
+
+.hidden{
+  display:none !important;
 }
 
 /* MOBILE */
 @media(max-width:900px){
-  .menu-toggle{
-    display:block;
-  }
+  .menu-toggle{display:block}
 
   .layout{
     flex-direction:column;
@@ -241,6 +248,10 @@ body{
   .titlebar{
     font-size:18px;
   }
+
+  .pdf-wrap{
+    padding:10px;
+  }
 }
 </style>
 </head>
@@ -249,7 +260,7 @@ body{
 
 <header class="topbar">
   <div class="logo-section">
-    <img src="./images/st-traders-logo1.png" onerror="this.style.display='none'">
+    <img src="./images/st-traders-logo1.png" alt="Logo" onerror="this.style.display='none'">
     <span>ST TRADERS CHEAPJACK</span>
   </div>
 
@@ -273,16 +284,28 @@ body{
       <li><a href="./viewer.html?file=aprons.pdf&title=Aprons">Aprons</a></li>
       <li><a href="./viewer.html?file=attender-gown.pdf&title=Attender Gown">Attender Gown</a></li>
       <li><a href="./viewer.html?file=bedsheets-catalog.pdf&title=Bedsheets Catalog">Bedsheets Catalog</a></li>
+      <li><a href="./viewer.html?file=belt-and-overlapping-gowns.pdf&title=Belt and Overlapping Gowns">Belt & Overlapping Gowns</a></li>
       <li><a href="./viewer.html?file=blankets-catalog.pdf&title=Blankets Catalog">Blankets Catalog</a></li>
+      <li><a href="./viewer.html?file=business-class-wocky-tocky.pdf&title=Business Class Wocky Tocky">Business Class Wocky Tocky</a></li>
+      <li><a href="./viewer.html?file=chef-coat-and-ward-boy.pdf&title=Chef Coat and Ward Boy">Chef Coat & Ward Boy</a></li>
+      <li><a href="./viewer.html?file=front-office-uniform.pdf&title=Front Office Uniform">Front Office Uniform</a></li>
+      <li><a href="./viewer.html?file=hole-towels-catalog.pdf&title=Hole Towels Catalog">Hole Towels Catalog</a></li>
+      <li><a href="./viewer.html?file=house-keeping-jacket.pdf&title=House Keeping Jacket">House Keeping Jacket</a></li>
+      <li><a href="./viewer.html?file=housekeeping-r.pdf&title=Housekeeping R">Housekeeping R</a></li>
+      <li><a href="./viewer.html?file=nighty-gowns.pdf&title=Nighty Gowns">Nighty Gowns</a></li>
       <li><a href="./viewer.html?file=patient-dress.pdf&title=Patient Dress">Patient Dress</a></li>
       <li><a href="./viewer.html?file=patient-gowns-r.pdf&title=Patient Gowns R">Patient Gowns R</a></li>
-      <li><a href="./viewer.html?file=scrub-suit-female-victoria-supreme.pdf&title=Scrub Suit Female">Scrub Suit Female</a></li>
-      <li><a href="./viewer.html?file=scrub-suit-male-victoria-supreme.pdf&title=Scrub Suit Male">Scrub Suit Male</a></li>
+      <li><a href="./viewer.html?file=pediatric-gowns-and-dress.pdf&title=Pediatric Gowns and Dress">Pediatric Gowns & Dress</a></li>
+      <li><a href="./viewer.html?file=plain-towels-catalog.pdf&title=Plain Towels Catalog">Plain Towels Catalog</a></li>
+      <li><a href="./viewer.html?file=scrub-suit-female-victoria-supreme.pdf&title=Scrub Suit Female Victoria Supreme">Scrub Suit Female</a></li>
+      <li><a href="./viewer.html?file=scrub-suit-male-victoria-supreme.pdf&title=Scrub Suit Male Victoria Supreme">Scrub Suit Male</a></li>
       <li><a href="./viewer.html?file=nurse-uniform.pdf&title=Nurse Uniform">Nurse Uniform</a></li>
+      <li><a href="./viewer.html?file=nurses-uniform-color-shades.pdf&title=Nurse Uniform Color Shades">Nurse Uniform Color Shades</a></li>
+      <li><a href="./viewer.html?file=scrub-suit-color-shades-vs.pdf&title=Scrub Suit Color Shades">Scrub Suit Color Shades</a></li>
     </ul>
   </aside>
 
-  <!-- MAIN -->
+  <!-- VIEWER -->
   <main class="viewer-content">
     <div class="titlebar" id="catalogTitle">Catalog Viewer</div>
 
@@ -295,7 +318,6 @@ body{
 </div>
 
 <script src="./pdfjs/pdf.min.js"></script>
-
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/pdf.worker.min.js';
 
@@ -315,17 +337,16 @@ const catalogSearch = document.getElementById("catalogSearch");
 
 catalogTitle.textContent = title;
 
-/* PDF RENDER */
+/* RENDER PDF */
 async function renderPDF(){
   if(!file){
-    statusEl.textContent="No catalog selected.";
+    statusEl.textContent = "No catalog selected.";
     return;
   }
 
   try{
     const pdf = await pdfjsLib.getDocument("./catalogs/" + file).promise;
     const totalPages = pdf.numPages;
-
     statusEl.remove();
 
     const width = Math.min(pdfWrap.clientWidth - 30, 1000);
@@ -348,7 +369,6 @@ async function renderPDF(){
 
       canvas.width = scaledViewport.width * ratio;
       canvas.height = scaledViewport.height * ratio;
-
       canvas.style.width = scaledViewport.width + "px";
       canvas.style.height = scaledViewport.height + "px";
 
@@ -362,16 +382,16 @@ async function renderPDF(){
       pdfWrap.appendChild(pageDiv);
     }
 
-    pdfWrap.addEventListener("scroll",()=>{
+    pdfWrap.addEventListener("scroll", function(){
       const pages = document.querySelectorAll(".page");
       let current = 1;
 
-      pages.forEach(p=>{
-        const rect = p.getBoundingClientRect();
-        const wrap = pdfWrap.getBoundingClientRect();
+      pages.forEach(page=>{
+        const rect = page.getBoundingClientRect();
+        const wrapRect = pdfWrap.getBoundingClientRect();
 
-        if(rect.top - wrap.top <= 120){
-          current = p.dataset.page;
+        if(rect.top - wrapRect.top <= 120){
+          current = page.dataset.page;
         }
       });
 
@@ -387,13 +407,12 @@ async function renderPDF(){
 renderPDF();
 
 /* SEARCH */
-catalogSearch.addEventListener("input",function(){
+catalogSearch.addEventListener("input", function(){
   const val = this.value.toLowerCase();
 
   sidebarLinks.forEach(link=>{
-    link.parentElement.style.display =
-      link.textContent.toLowerCase().includes(val)
-      ? "block" : "none";
+    const show = link.textContent.toLowerCase().includes(val);
+    link.parentElement.classList.toggle("hidden", !show);
   });
 });
 
@@ -405,9 +424,17 @@ sidebarLinks.forEach(link=>{
   }
 });
 
-/* MOBILE MENU */
-menuToggle.addEventListener("click",()=>{
+/* MENU */
+menuToggle.addEventListener("click", ()=>{
   sidebar.classList.toggle("show");
+});
+
+sidebarLinks.forEach(link=>{
+  link.addEventListener("click", ()=>{
+    if(window.innerWidth <= 900){
+      sidebar.classList.remove("show");
+    }
+  });
 });
 
 /* SHARE */
@@ -419,17 +446,18 @@ function sharePage(){
       title:title,
       text:"Check this catalog",
       url:url
-    });
+    }).catch(()=>{});
   }else{
-    navigator.clipboard.writeText(url);
-    alert("Link copied!");
+    navigator.clipboard.writeText(url).then(()=>{
+      alert("Link copied!");
+    });
   }
 }
 
 /* WHATSAPP */
 function openWhatsApp(){
   const msg = encodeURIComponent("Hi, I want enquiry for: " + title);
-  window.open("https://wa.me/919347012962?text=" + msg,"_blank");
+  window.open("https://wa.me/919347012962?text=" + msg, "_blank");
 }
 </script>
 
